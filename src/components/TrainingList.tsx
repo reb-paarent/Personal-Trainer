@@ -64,8 +64,14 @@ function TrainingList() {
 
   return (
     <>
-      <div style={{ width: "90%", height: 500, marginTop: 10 }}>
+      <div id="list_contents" style={{ width: "90%", height: 500, marginTop: 10 }}>
+        <h2 id="training_top">Trainings</h2>
         <DataGrid
+          sx={{
+            position: "absolute",
+            left: "50%",
+            transform: "translateX(-50%)",
+          }}
           rows={trainings}
           columns={columns}
           getRowId={(row) => row.id}

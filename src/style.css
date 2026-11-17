@@ -1,0 +1,12 @@
+#customer_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 5%;
+  margin-bottom: 2%;
+}
+
+#training_top {
+  margin-left: 5%;
+  margin-bottom: 2%;
+}
