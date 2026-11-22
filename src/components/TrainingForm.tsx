@@ -1,13 +1,16 @@
 import DialogContent from "@mui/material/DialogContent";
 import TextField from "@mui/material/TextField";
-import type { TrainingsWithCustomerData } from "../types";
 import React from "react";
 
+export type TrainingFormData = {
+  date: string;
+  duration: number;
+  activity: string;
+};
+
 type TrainingFormProps = {
-  training: TrainingsWithCustomerData;
-  setTraining: React.Dispatch<
-    React.SetStateAction<TrainingsWithCustomerData>
-  >;
+  training: TrainingFormData;
+  setTraining: React.Dispatch<React.SetStateAction<TrainingFormData>>;
 };
 
 function TrainingForm({ training, setTraining }: TrainingFormProps) {
@@ -17,6 +20,7 @@ function TrainingForm({ training, setTraining }: TrainingFormProps) {
         required
         margin="dense"
         label="Date"
+        slotProps={{ inputLabel: { shrink: true } }}
         value={training.date}
         onChange={(e) =>
           setTraining({ ...training, date: e.target.value })
@@ -42,34 +46,6 @@ function TrainingForm({ training, setTraining }: TrainingFormProps) {
         value={training.activity}
         onChange={(e) =>
           setTraining({ ...training, activity: e.target.value })
-        }
-        fullWidth
-        variant="standard"
-      />
-      <TextField
-        required
-        margin="dense"
-        label="Customer"
-        value={training.customer.firstname}
-        onChange={(e) =>
-          setTraining((prev) => ({
-            ...prev,
-            customer: { ...prev.customer, firstname: e.target.value },
-          }))
-        }
-        fullWidth
-        variant="standard"
-      />
-      <TextField
-        required
-        margin="dense"
-        label="Customer"
-        value={training.customer.lastname}
-        onChange={(e) =>
-          setTraining((prev) => ({
-            ...prev,
-            customer: { ...prev.customer, lastname: e.target.value },
-          }))
         }
         fullWidth
         variant="standard"

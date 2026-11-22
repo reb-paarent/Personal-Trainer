@@ -29,7 +29,7 @@ export default function AddCustomer(props: AddCustomerProps) {
       body: JSON.stringify(customer),
     })
       .then((response) => {
-        if (!response.ok) throw new Error("Something went wrong in addition");
+        if (!response.ok) throw new Error("Something went wrong with adding customer");
 
         return response.json();
       })

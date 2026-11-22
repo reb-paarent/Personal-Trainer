@@ -8,6 +8,7 @@ import type { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Snackbar from "@mui/material/Snackbar";
+import AddTraining from "./AddTraining";
 
 function CustomerList() {
   const [customers, setCustomers] = useState<CustomerData[] | null>();
@@ -21,6 +22,15 @@ function CustomerList() {
     { field: "city", headerName: "City" },
     { field: "email", headerName: "Email" },
     { field: "phone", headerName: "Phone" },
+    {
+      field: "addTraining",
+      headerName: " ",
+      sortable: false,
+      width: 150,
+      renderCell: (params: GridRenderCellParams<CustomerData>) => (
+        <AddTraining customer={params.row} />
+      ),
+    },
     {
       field: "_links.customer.href",
       headerName: " ",
