@@ -18,7 +18,7 @@ function TrainingList() {
       headerName: "Date",
       width: 150,
 
-      //AI was used to fix syntax issues with data formatting.
+      //AI was used to fix syntax issues with date formatting.
       valueFormatter: (value: string) => {
         if (!value) return "";
 
