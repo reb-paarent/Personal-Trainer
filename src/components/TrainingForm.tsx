@@ -2,6 +2,11 @@ import DialogContent from "@mui/material/DialogContent";
 import TextField from "@mui/material/TextField";
 import React from "react";
 
+import dayjs from "dayjs";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+
 export type TrainingFormData = {
   date: string;
   duration: number;
@@ -16,18 +21,27 @@ type TrainingFormProps = {
 function TrainingForm({ training, setTraining }: TrainingFormProps) {
   return (
     <DialogContent>
-      <TextField
-        required
-        margin="dense"
-        label="Date"
-        slotProps={{ inputLabel: { shrink: true } }}
-        value={training.date}
-        onChange={(e) =>
-          setTraining({ ...training, date: e.target.value })
-        }
-        fullWidth
-        variant="standard"
-      />
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DateTimePicker
+          label="Date"
+          format="DD.MM.YYYY HH:mm"
+          value={training.date ? dayjs(training.date) : null}
+          onChange={(value) =>
+            setTraining((dateValue) => ({
+              ...dateValue,
+              date: value?.isValid() ? value.toISOString() : "",
+            }))
+          }
+          slotProps={{
+            textField: {
+              required: true,
+              margin: "dense",
+              fullWidth: true,
+              variant: "standard",
+            },
+          }}
+        />
+      </LocalizationProvider>
       <TextField
         required
         margin="dense"
@@ -44,9 +58,7 @@ function TrainingForm({ training, setTraining }: TrainingFormProps) {
         margin="dense"
         label="Activity"
         value={training.activity}
-        onChange={(e) =>
-          setTraining({ ...training, activity: e.target.value })
-        }
+        onChange={(e) => setTraining({ ...training, activity: e.target.value })}
         fullWidth
         variant="standard"
       />

@@ -34,6 +34,7 @@ function CustomerList() {
     {
       field: "_links.customer.href",
       headerName: " ",
+      sortable: false,
       renderCell: (params: GridRenderCellParams) => (
         <EditCustomer fetchCustomers={fetchCustomers} customer={params.row} />
       ),
@@ -41,6 +42,7 @@ function CustomerList() {
     {
       field: "_links.self.href",
       headerName: " ",
+      sortable: false,
       renderCell: (params: GridRenderCellParams) => (
         <IconButton onClick={() => handleDelete(params.row._links.self.href)}>
           <DeleteIcon color="error" />
