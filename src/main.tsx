@@ -6,6 +6,7 @@ import App from "./App.tsx";
 import Home from "./components/Home"
 import CustomerList from "./components/CustomerList";
 import TrainingList from "./components/TrainingList";
+import Calendar from "./components/Calendar";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "customers",
         element: <CustomerList />,
+      },
+      {
+        path: "calendar",
+        element: <Calendar />,
       }
     ],
   },

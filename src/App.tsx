@@ -41,6 +41,9 @@ function App() {
               <MenuItem component={Link} to="/customers" onClick={handleClose}>
                 Customers
               </MenuItem>
+              <MenuItem component={Link} to="/calendar" onClick={handleClose}>
+                Calendar
+              </MenuItem>
             </Menu>
             <Typography
               variant="h5"
