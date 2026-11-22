@@ -18,7 +18,7 @@ function TrainingList() {
       headerName: "Date",
       width: 150,
 
-      //Date formatting was written with AI
+      //AI was used to fix syntax issues with data formatting.
       valueFormatter: (value: string) => {
         if (!value) return "";
 
@@ -78,6 +78,7 @@ function TrainingList() {
     fetchTrainings();
   }, []);
 
+  // Delete training
   const handleDelete = (url: string) => {
     DeleteTraining(url)
       .then(() => {

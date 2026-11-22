@@ -53,6 +53,30 @@ function CustomerList() {
     },
   ];
 
+  const fetchCustomers = () => {
+    GetCustomers()
+      .then((data) => setCustomers(data._embedded.customers))
+      .catch((err) => console.error(err));
+  };
+
+  useEffect(() => {
+    fetchCustomers();
+  }, []);
+
+  // Delete customer
+  const handleDelete = (url: string) => {
+    DeleteCustomer(url)
+      .then(() => {
+        fetchCustomers();
+        setOpen(true);
+      })
+      .catch((err) => console.error(err));
+  };
+
+  /* 
+  This code exports customer data to a CSV file.
+  The file is named customers.csv and excludes links and training data.
+  */
   const csvConfig = mkConfig({
     filename: "customers",
     useKeysAsHeaders: true,
@@ -84,25 +108,6 @@ function CustomerList() {
     download(csvConfig)(generateCsv(csvConfig)(rows));
   };
 
-  const fetchCustomers = () => {
-    GetCustomers()
-      .then((data) => setCustomers(data._embedded.customers))
-      .catch((err) => console.error(err));
-  };
-
-  useEffect(() => {
-    fetchCustomers();
-  }, []);
-
-  const handleDelete = (url: string) => {
-    DeleteCustomer(url)
-      .then(() => {
-        fetchCustomers();
-        setOpen(true);
-      })
-      .catch((err) => console.error(err));
-  };
-
   return (
     <>
       <div id="list_contents">
@@ -118,7 +123,7 @@ function CustomerList() {
           disableRowSelectionOnClick
         />
       </div>
-      
+
       <div id="customer_export">
         <Button
           variant="contained"
