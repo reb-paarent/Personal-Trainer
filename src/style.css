@@ -2,11 +2,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-left: 5%;
   margin-bottom: 2%;
 }
 
 #training_top {
   margin-left: 5%;
   margin-bottom: 2%;
+}
+
+#list_contents {
+  width: 90%;
+  margin: 10px auto 0;
+}
+
+#customer_export {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
 }

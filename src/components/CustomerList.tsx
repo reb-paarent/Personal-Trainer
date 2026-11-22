@@ -9,6 +9,8 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Snackbar from "@mui/material/Snackbar";
 import AddTraining from "./AddTraining";
+import Button from "@mui/material/Button";
+import { mkConfig, generateCsv, download } from "export-to-csv";
 
 function CustomerList() {
   const [customers, setCustomers] = useState<CustomerData[] | null>();
@@ -51,6 +53,37 @@ function CustomerList() {
     },
   ];
 
+  const csvConfig = mkConfig({
+    filename: "customers",
+    useKeysAsHeaders: true,
+  });
+
+  const exportCsv = () => {
+    if (!customers?.length) return;
+
+    const rows = customers.map(
+      ({
+        firstname,
+        lastname,
+        streetaddress,
+        postcode,
+        city,
+        email,
+        phone,
+      }) => ({
+        firstname,
+        lastname,
+        streetaddress,
+        postcode,
+        city,
+        email,
+        phone,
+      }),
+    );
+
+    download(csvConfig)(generateCsv(csvConfig)(rows));
+  };
+
   const fetchCustomers = () => {
     GetCustomers()
       .then((data) => setCustomers(data._embedded.customers))
@@ -72,20 +105,12 @@ function CustomerList() {
 
   return (
     <>
-      <div
-        id="list_contents"
-        style={{ width: "90%", height: 500, marginTop: 10 }}
-      >
+      <div id="list_contents">
         <div id="customer_top">
           <h2 id="page_title">Customers</h2>
           <AddCustomer fetchCustomers={fetchCustomers} />
         </div>
         <DataGrid
-          sx={{
-            position: "absolute",
-            left: "50%",
-            transform: "translateX(-50%)",
-          }}
           rows={customers || []}
           columns={columns}
           getRowId={(row) => row._links.self.href}
@@ -93,6 +118,17 @@ function CustomerList() {
           disableRowSelectionOnClick
         />
       </div>
+      
+      <div id="customer_export">
+        <Button
+          variant="contained"
+          onClick={exportCsv}
+          disabled={!customers?.length}
+        >
+          Export CSV file
+        </Button>
+      </div>
+
       <Snackbar
         open={open}
         message="Customer deleted successfully"
