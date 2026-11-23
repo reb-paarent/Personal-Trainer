@@ -1,8 +1,18 @@
 import { useState, useEffect } from "react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { EventCalendar } from "@mui/x-scheduler/event-calendar";
 import type { SchedulerEvent } from "@mui/x-scheduler/models";
 import type { TrainingsWithCustomerData } from "../types";
 import { GetTrainings } from "../api";
+
+//This style theme was created with AI.
+const calendarTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#624c94",
+    },
+  },
+});
 
 function Calendar() {
   const [trainings, setTrainings] = useState<TrainingsWithCustomerData[]>([]);
@@ -33,7 +43,13 @@ function Calendar() {
     };
   });
 
-  return <EventCalendar events={events} defaultView="month" />;
+  return (
+    <ThemeProvider theme={calendarTheme}>
+      <div id="calendar">
+        <EventCalendar events={events} defaultView="month" />
+      </div>
+    </ThemeProvider>
+  );
 }
 
 export default Calendar;

@@ -29,7 +29,8 @@ export default function AddCustomer(props: AddCustomerProps) {
       body: JSON.stringify(customer),
     })
       .then((response) => {
-        if (!response.ok) throw new Error("Something went wrong with adding customer");
+        if (!response.ok)
+          throw new Error("Something went wrong with adding customer");
 
         return response.json();
       })
@@ -39,7 +40,13 @@ export default function AddCustomer(props: AddCustomerProps) {
 
   return (
     <>
-      <Button variant="contained" onClick={handleClickOpen}>
+      <Button
+        sx={{
+          backgroundColor: "#624c94",
+        }}
+        variant="contained"
+        onClick={handleClickOpen}
+      >
         Add Customer
       </Button>
       <Dialog open={open} onClose={handleClose}>

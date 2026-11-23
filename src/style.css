@@ -6,7 +6,8 @@
 }
 
 #training_top {
-  margin-left: 5%;
+  display: flex;
+  justify-content: center;
   margin-bottom: 2%;
 }
 
@@ -19,4 +20,36 @@
   display: flex;
   justify-content: center;
   margin-top: 16px;
+}
+
+#calendar {
+  height: 75vh;
+  margin-top: 16px;
+}
+
+<!--This style was created with AI-->
+#calendar [data-palette="blue"] {
+  --event-main: #624c94;
+  --event-surface-bold: #624c94;
+  --event-surface-bold-hover: #403182;
+  --event-on-surface-bold: #ffffff;
+  --event-surface-selected: #403182;
+  --event-surface-selected-hover: #39296a;
+  --event-on-surface-selected: #ffffff;
+  --event-surface-subtle: #eaf0f5;
+  --event-surface-subtle-hover: #d7e3ed;
+  --event-surface-accent: #624c94;
+  --event-on-surface-subtle-primary: #39296a;
+  --event-on-surface-subtle-secondary: #39296a;
+}
+
+#stats_chart {
+  margin-top: 16px;
+}
+
+#home {
+  margin-top: 32px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 }

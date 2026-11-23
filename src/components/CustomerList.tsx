@@ -11,6 +11,7 @@ import Snackbar from "@mui/material/Snackbar";
 import AddTraining from "./AddTraining";
 import Button from "@mui/material/Button";
 import { mkConfig, generateCsv, download } from "export-to-csv";
+import Typography from "@mui/material/Typography";
 
 function CustomerList() {
   const [customers, setCustomers] = useState<CustomerData[] | null>();
@@ -47,7 +48,7 @@ function CustomerList() {
       sortable: false,
       renderCell: (params: GridRenderCellParams) => (
         <IconButton onClick={() => handleDelete(params.row._links.self.href)}>
-          <DeleteIcon color="error" />
+          <DeleteIcon sx={{color: "#cf1837"}} />
         </IconButton>
       ),
     },
@@ -112,20 +113,24 @@ function CustomerList() {
     <>
       <div id="list_contents">
         <div id="customer_top">
-          <h2 id="page_title">Customers</h2>
+          <Typography variant="h5">Customers</Typography>
           <AddCustomer fetchCustomers={fetchCustomers} />
         </div>
         <DataGrid
           rows={customers || []}
           columns={columns}
           getRowId={(row) => row._links.self.href}
-          autoPageSize
+          initialState={{ pagination: { paginationModel: { pageSize: 8 } } }}
+          pageSizeOptions={[8]}
           disableRowSelectionOnClick
         />
       </div>
 
       <div id="customer_export">
         <Button
+          sx={{
+            backgroundColor: "#624c94",
+          }}
           variant="contained"
           onClick={exportCsv}
           disabled={!customers?.length}

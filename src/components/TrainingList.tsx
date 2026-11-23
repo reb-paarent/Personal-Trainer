@@ -7,6 +7,7 @@ import type { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Snackbar from "@mui/material/Snackbar";
+import Typography from "@mui/material/Typography";
 
 function TrainingList() {
   const [trainings, setTrainings] = useState<TrainingsWithCustomerData[]>([]);
@@ -62,7 +63,7 @@ function TrainingList() {
             )
           }
         >
-          <DeleteIcon color="error" />
+          <DeleteIcon sx={{ color: "#cf1837" }} />
         </IconButton>
       ),
     },
@@ -94,7 +95,9 @@ function TrainingList() {
         id="list_contents"
         style={{ width: "90%", height: 500, marginTop: 10 }}
       >
-        <h2 id="training_top">Trainings</h2>
+        <div id="training_top">
+          <Typography variant="h5">Trainings</Typography>
+        </div>
         <DataGrid
           sx={{
             position: "absolute",
@@ -104,7 +107,8 @@ function TrainingList() {
           rows={trainings}
           columns={columns}
           getRowId={(row) => row.id}
-          autoPageSize
+          initialState={{ pagination: { paginationModel: { pageSize: 8 } } }}
+          pageSizeOptions={[8]}
           disableRowSelectionOnClick
         />
       </div>

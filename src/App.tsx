@@ -9,6 +9,7 @@ import { Link, Outlet } from "react-router";
 import IconButton from "@mui/material/IconButton";
 import DehazeRoundedIcon from "@mui/icons-material/DehazeRounded";
 import "./style.css";
+import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 
 function App() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -25,9 +26,29 @@ function App() {
   return (
     <>
       <Container maxWidth="lg">
-        <AppBar position="static">
+        <AppBar 
+        position="static"
+        sx={{
+          backgroundColor: "#624c94"
+        }}
+        >
           <Toolbar>
-            <IconButton aria-label="Open navigation menu" onClick={handleOpen}>
+            <DirectionsRunIcon fontSize="large" />
+            <Typography
+              variant="h5"
+              sx={{
+                position: "absolute",
+                left: "50%",
+                transform: "translateX(-50%)",
+              }}
+            >
+              Personal Trainer
+            </Typography>
+            <IconButton
+              aria-label="Open navigation menu"
+              onClick={handleOpen}
+              sx={{ marginLeft: "auto" }}
+            >
               <DehazeRoundedIcon fontSize="large" sx={{ color: "white" }} />
             </IconButton>
 
@@ -44,17 +65,10 @@ function App() {
               <MenuItem component={Link} to="/calendar" onClick={handleClose}>
                 Calendar
               </MenuItem>
+              <MenuItem component={Link} to="/statistics" onClick={handleClose}>
+                Statistics
+              </MenuItem>
             </Menu>
-            <Typography
-              variant="h5"
-              sx={{
-                position: "absolute",
-                left: "50%",
-                transform: "translateX(-50%)",
-              }}
-            >
-              Personal Trainer
-            </Typography>
           </Toolbar>
         </AppBar>
         <Outlet />

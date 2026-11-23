@@ -36,14 +36,25 @@ export default function AddTraining(props: AddTrainingProps) {
       body: JSON.stringify({ ...training, customer: customerLink }),
     })
       .then((response) => {
-        if (!response.ok) throw new Error("Something went wrong with adding training");
+        if (!response.ok)
+          throw new Error("Something went wrong with adding training");
       })
       .then(handleClose);
   };
 
   return (
     <>
-      <Button size="small" variant="contained" onClick={handleClickOpen}>Add Training</Button>
+      <Button
+        sx={{
+          backgroundColor: "#af93cf",
+          color: "black"
+        }}
+        size="small"
+        variant="contained"
+        onClick={handleClickOpen}
+      >
+        Add Training
+      </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>
           Add Training for {props.customer.firstname} {props.customer.lastname}
