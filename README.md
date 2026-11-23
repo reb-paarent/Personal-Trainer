@@ -4,4 +4,4 @@ This application is designed for a personal trainer to manage customer data, org
 
 ## How to Use
 
-Find the application [here]([http://softala.haaga-helia.fi:7077/](https://reb-paarent.github.io/Personal-Trainer/))
+Find the application [here](https://reb-paarent.github.io/Personal-Trainer/)
